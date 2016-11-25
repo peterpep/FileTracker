@@ -1,12 +1,23 @@
-﻿<Window x:Class="FileTracker.MainWindow"
+﻿<Controls:MetroWindow x:Class="FileTracker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:FileTracker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="File Tracker" Height="500" Width="525" Background="Black" Icon="Resources/Hopstarter-Mac-Folders-Windows.ico"
+        GlowBrush="Aqua" WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="True" BorderThickness="0" Closed="MainWindow_OnClosed">
+    
     <Grid>
-        
+        <Menu Background="Black" Margin="0,0,0,442" >
+            <MenuItem Header="_File">
+                <MenuItem Header="_Settings"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Button x:Name="AddFolderBtn" Content="Add" Margin="10,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="150" Click="AddFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}"></Button>
+        <Button x:Name="RemoveFolderBtn" Content="Remove" Margin="10,90,0,0" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Click="RemoveFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}"></Button>
+        <Label x:Name="FolderListLbl" Content="Folders to Track" Margin="35,120,0,0" Height="25" Width="95" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <ListBox x:Name="FolderListView" Margin="10,150,0,0" Width="150" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Black" BorderThickness="2" Foreground="Black"></ListBox>
     </Grid>
-</Window>
+</Controls:MetroWindow>
