@@ -15,9 +15,13 @@
                 <MenuItem x:Name="Setting" Header="_Settings" Click="Setting_OnClick"></MenuItem>
             </MenuItem>
         </Menu>
-        <Button x:Name="AddFolderBtn" Content="Add" Margin="10,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="150" Click="AddFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}"></Button>
-        <Button x:Name="RemoveFolderBtn" Content="Remove" Margin="10,90,0,0" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Click="RemoveFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}"></Button>
-        <Label x:Name="FolderListLbl" Content="Folders to Track" Margin="35,120,0,0" Height="25" Width="95" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Button x:Name="AddFolderBtn" Margin="10,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="150" Click="AddFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}">
+            <Label Content="Add" Foreground="White" Height="30" Width="50" Background="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" HorizontalAlignment="Center" FontSize="15" VerticalAlignment="Center"></Label>
+        </Button>
+        <Button x:Name="RemoveFolderBtn" Margin="10,90,0,0" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Click="RemoveFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}">
+            <Label Content="Remove" Foreground="White" Height="30" Width="Auto" Background="Transparent" VerticalContentAlignment="Top" HorizontalAlignment="Center" FontSize="15" VerticalAlignment="Center"></Label>
+        </Button>
+        <Label x:Name="FolderListLbl" Content="Folders to Track" Margin="35,128,0,0" Height="25" Width="95" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <ListBox x:Name="FolderListView" HorizontalContentAlignment="Center" Margin="10,150,0,0" Width="150" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Black" BorderThickness="2" Foreground="Black"></ListBox>
     </Grid>
 </Controls:MetroWindow>
