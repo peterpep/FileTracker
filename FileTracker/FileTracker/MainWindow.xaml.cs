@@ -28,6 +28,7 @@ namespace FileTracker
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        #region Declarations
         private ObservableCollection<FileSystemWatcher> _listOfFileSystemWatchers = new ObservableCollection<FileSystemWatcher>();
         private ListOfFolders _trackingFolderList = new ListOfFolders();
         private readonly Forms.NotifyIcon _notifyIcon = new Forms.NotifyIcon();
@@ -37,7 +38,7 @@ namespace FileTracker
         private EmailProcess _emailer;
         private string _emailInfo = "EmailInfo.bin";
         private bool _isEmailSaved = false;
-
+        #endregion  
 
         public MainWindow()
         {
@@ -70,6 +71,7 @@ namespace FileTracker
             _emailer = new EmailProcess(_newEmailer.EmailAddress, _newEmailer.Password, _newEmailer.SendingTo);
         }
 
+        #region FileSystemWatcher
         private FileSystemWatcher InitializeFileSystemWatcher(FolderObj newFolder)
         {
             FileSystemWatcher newFileSystemWatcher = new FileSystemWatcher
@@ -95,7 +97,9 @@ namespace FileTracker
             var DirName = System.IO.Path.GetFileName(sentBy.Path);
             _emailer.SendMail($"New Media for {DirName} is Available on Plex", $"{DirName} is available for viewing on Plex!");
         }
+        #endregion
 
+        #region UI Controls
         public void Window_Minimized(object sender, EventArgs e)
         {
             if (this.WindowState == WindowState.Minimized)
@@ -152,7 +156,6 @@ namespace FileTracker
             FolderListView.Items.Refresh();
         }
 
-
         private void Setting_OnClick(object sender, RoutedEventArgs e)
         {
             _newEmailPerson = new EmailLogin(_newEmailer);
@@ -183,7 +186,9 @@ namespace FileTracker
                 MessageBox.Show("Email information was not entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region (De)serialize
         private static void SerializeEmail(PersonEmail savedEmail, string fileName)
         {
             try
@@ -220,5 +225,6 @@ namespace FileTracker
                 _isEmailSaved = false;
             }
         }
+        #endregion
     }
 }
