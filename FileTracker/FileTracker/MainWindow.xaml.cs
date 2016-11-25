@@ -38,6 +38,9 @@ namespace FileTracker
         private EmailProcess _emailer;
         private string _emailInfo = "EmailInfo.bin";
         private bool _isEmailSaved = false;
+
+        private string _folderInfo = "FolderInfo.bin";
+        private bool _isFolderSaved = false;
         #endregion  
 
         public MainWindow()
@@ -48,7 +51,6 @@ namespace FileTracker
             _notifyIcon.MouseDoubleClick += Window_Unminimized;
 
 
-            FolderListView.ItemsSource = _trackingFolderList;
 
             DeserializeEmail(_emailInfo); //check if saved email login exists
 
@@ -68,7 +70,14 @@ namespace FileTracker
                 }
             }
 
+
             _emailer = new EmailProcess(_newEmailer.EmailAddress, _newEmailer.Password, _newEmailer.SendingTo);
+
+            DeserializeFolders(_folderInfo); //check if saved folders exist
+
+            FolderListView.ItemsSource = _trackingFolderList;
+
+            FolderListView.Items.Refresh();
         }
 
         #region FileSystemWatcher
@@ -120,6 +129,11 @@ namespace FileTracker
 
         private void MainWindow_OnClosed(object sender, EventArgs e)
         {
+            if (_isEmailSaved == true)
+            {
+                SerializeEmail(_newEmailer, _emailInfo);
+            }
+            SerializeFolders(_trackingFolderList, _folderInfo);
             GC.Collect();
             Environment.Exit(0);
         }
@@ -208,6 +222,11 @@ namespace FileTracker
 
         private void DeserializeEmail(string fileName)
         {
+            if (File.Exists(fileName) == false)
+            {
+                _isEmailSaved = false;
+                return;
+            }
             try
             {
 
@@ -223,6 +242,48 @@ namespace FileTracker
             catch (Exception)
             {
                 _isEmailSaved = false;
+            }
+        }
+
+        private static void SerializeFolders(ListOfFolders saveFolders, string fileName)
+        {
+            try
+            {
+                using (Stream stream = File.Open(fileName, FileMode.Create))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, saveFolders);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DeserializeFolders(string fileName)
+        {
+            if (File.Exists(fileName) == false)
+            {
+                _isFolderSaved = false;
+                return;
+            }
+            try
+            {
+
+                using (Stream stream = File.Open(fileName, FileMode.Open))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    _trackingFolderList = (ListOfFolders)bin.Deserialize(stream);
+                }
+
+                _isFolderSaved = true;
+
+            }
+            catch (Exception)
+            {
+                _isFolderSaved = false;
             }
         }
         #endregion

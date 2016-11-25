@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,12 +8,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using TaskScheduler;
+using MessageBox = System.Windows.MessageBox;
 
 namespace FileTracker
 {
@@ -100,5 +103,32 @@ namespace FileTracker
         {
             WillSerialize = true;
         }
+
+        private void EmailLogin_OnClosing(object sender, CancelEventArgs e)
+        {
+            try
+            {
+
+                EmailUser = UsernameTxt.Text;
+                EmailPass = PasswordTxt.Password;
+                SendToEmail = SendToTxt.Text;
+                if (_emailUser.Contains("@") && _sendToEmail.Contains("@"))
+                {
+                    //Close();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter valid email addresses", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    e.Cancel = true;
+                    
+                    //return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        
     }
 }

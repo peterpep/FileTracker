@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:FileTracker"
         mc:Ignorable="d"
-        Title="Email Login" Height="210.488" Width="253.902">
+        Title="Email Login" Height="210.488" Width="253.902" Closing="EmailLogin_OnClosing" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="usernameLbl" Content="User Name: " Height="25" Width="75" Margin="20,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <TextBox x:Name="UsernameTxt" Height="25" Width="129" Margin="90,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
