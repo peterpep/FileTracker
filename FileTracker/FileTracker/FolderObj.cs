@@ -7,7 +7,8 @@ using Forms = System.Windows.Forms;
 
 namespace FileTracker
 {
-    class FolderObj
+    [Serializable()]
+    public class FolderObj
     {
         private string _name;
         private string _path;

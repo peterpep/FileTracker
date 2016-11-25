@@ -8,7 +8,8 @@ using System.Windows;
 
 namespace FileTracker
 {
-    class ListOfFolders : ObservableCollection<FolderObj>
+    [Serializable()]
+    public class ListOfFolders : ObservableCollection<FolderObj>
     {
         public void AddFolder(FolderObj folderToAdd)
         {

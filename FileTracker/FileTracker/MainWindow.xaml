@@ -12,12 +12,12 @@
     <Grid>
         <Menu Background="Black" Margin="0,0,0,442" >
             <MenuItem Header="_File">
-                <MenuItem Header="_Settings"></MenuItem>
+                <MenuItem x:Name="Setting" Header="_Settings" Click="Setting_OnClick"></MenuItem>
             </MenuItem>
         </Menu>
         <Button x:Name="AddFolderBtn" Content="Add" Margin="10,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="150" Click="AddFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}"></Button>
         <Button x:Name="RemoveFolderBtn" Content="Remove" Margin="10,90,0,0" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Click="RemoveFolderBtn_OnClick" Style="{DynamicResource SquareButtonStyle}"></Button>
         <Label x:Name="FolderListLbl" Content="Folders to Track" Margin="35,120,0,0" Height="25" Width="95" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
-        <ListBox x:Name="FolderListView" Margin="10,150,0,0" Width="150" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Black" BorderThickness="2" Foreground="Black"></ListBox>
+        <ListBox x:Name="FolderListView" HorizontalContentAlignment="Center" Margin="10,150,0,0" Width="150" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Black" BorderThickness="2" Foreground="Black"></ListBox>
     </Grid>
 </Controls:MetroWindow>

@@ -66,6 +66,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomCommands.cs" />
+    <Compile Include="EmailLogin.xaml.cs">
+      <DependentUpon>EmailLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmailProcess.cs" />
     <Compile Include="FolderObj.cs" />
     <Compile Include="ListOfFolders.cs" />
@@ -76,6 +79,10 @@
       <DependentUpon>Resource.resx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Page Include="EmailLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
