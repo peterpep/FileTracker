@@ -108,7 +108,7 @@ namespace FileTracker
         {
             try
             {
-
+                
                 EmailUser = UsernameTxt.Text;
                 EmailPass = PasswordTxt.Password;
                 SendToEmail = SendToTxt.Text;
@@ -129,6 +129,10 @@ namespace FileTracker
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
+
+        private void ExitBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

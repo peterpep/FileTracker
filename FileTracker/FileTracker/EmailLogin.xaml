@@ -6,15 +6,16 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:FileTracker"
         mc:Ignorable="d"
-        Title="Email Login" Height="210.488" Width="253.902" Closing="EmailLogin_OnClosing" ResizeMode="NoResize">
+        Title="Email Login" Height="210.488" Width="253.902" Closing="EmailLogin_OnClosing" ResizeMode="NoResize" ShowCloseButton="False" GlowBrush="{DynamicResource AccentColorBrush}">
     <Grid>
-        <Label x:Name="usernameLbl" Content="User Name: " Height="25" Width="75" Margin="20,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Label x:Name="UsernameLbl" Content="User Name: " Height="25" Width="75" Margin="20,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <TextBox x:Name="UsernameTxt" Height="25" Width="129" Margin="90,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label x:Name="PasswordLbl" Content="Password: " Width="75" Margin="30,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <PasswordBox x:Name="PasswordTxt" Height="25" Width="129" Margin="90,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" PasswordChar="*"></PasswordBox>
         <Label x:Name="SendToLbl" Content="Send To: " Height="25" Width="60" Margin="37,70,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <TextBox x:Name="SendToTxt" Height="25" Width="129" Margin="90,70,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
-        <Button x:Name="OkBtn" Content="Login" Height="25" Width="100" Margin="80,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="OkBtn_Click"></Button>
+        <Button x:Name="OkBtn" Content="Login" Height="25" Width="100" Margin="10,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="OkBtn_Click"></Button>
+        <Button x:Name="ExitBtn" Content="Exit" Height="25" Width="100" Margin="135,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ExitBtn_OnClick"></Button>
         <CheckBox x:Name="SaveLoginInfo" Content="Save Login" Height="25" Margin="90,105,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Checked="SaveLoginInfo_Checked"></CheckBox>
     </Grid>
 </Controls:MetroWindow>

@@ -92,6 +92,7 @@ namespace FileTracker
             
             newFileSystemWatcher.Created += new FileSystemEventHandler(NewFileWatcher_Handler);
             newFileSystemWatcher.Changed += new FileSystemEventHandler(NewFileWatcher_Handler);
+            newFileSystemWatcher.Renamed += NewFileWatcher_Handler;
 
             newFileSystemWatcher.EnableRaisingEvents = true;
 
@@ -101,10 +102,13 @@ namespace FileTracker
 
         public void NewFileWatcher_Handler(object sender, FileSystemEventArgs e)
         {
+            
             //this will send email, implement later. for now will test with messagebox
             FileSystemWatcher sentBy = (FileSystemWatcher) sender;
-            var DirName = System.IO.Path.GetFileName(sentBy.Path);
-            _emailer.SendMail($"New Media for {DirName} is Available on Plex", $"{DirName} is available for viewing on Plex!");
+            sentBy.EnableRaisingEvents = false;
+            var dirName = System.IO.Path.GetFileName(sentBy.Path);
+            _emailer.SendMail($"New Media for {dirName} is Available on Plex", $"{dirName} is available for viewing on Plex!");
+            sentBy.EnableRaisingEvents = true;
         }
         #endregion
 
@@ -167,6 +171,7 @@ namespace FileTracker
             _trackingFolderList.RemoveAt(indexToRemove);
             _listOfFileSystemWatchers.RemoveAt(indexToRemove);
 
+            FolderListView.ItemsSource = _trackingFolderList;
             FolderListView.Items.Refresh();
         }
 
@@ -271,11 +276,16 @@ namespace FileTracker
             }
             try
             {
-
+                _listOfFileSystemWatchers = new ObservableCollection<FileSystemWatcher>();
                 using (Stream stream = File.Open(fileName, FileMode.Open))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     _trackingFolderList = (ListOfFolders)bin.Deserialize(stream);
+
+                    foreach (var folderObject in _trackingFolderList)
+                    {
+                        _listOfFileSystemWatchers.Add(InitializeFileSystemWatcher(folderObject));
+                    }
                 }
 
                 _isFolderSaved = true;

@@ -32,12 +32,26 @@ namespace TaskScheduler
 
         public void SendMail(string subject, string message)
         {
+
+            ////////
+            var tempstring = mail.To.ToString().Trim();
+
+            var addresses = tempstring.Split(',');
+
+            mail.To.Clear();
+            foreach (var sendingTo in addresses)
+            {
+                mail.To.Add(sendingTo);
+            }
+            ///////
+
             mail.Subject = subject;
             mail.Body = message;
             mail.BodyEncoding = Encoding.UTF8;
             mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
             client.Send(mail);
         }
+        
         
     }
 }
